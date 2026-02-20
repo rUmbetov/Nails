@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link';
-import { LogoutButton } from '../ui/LogoutButton';
 import { useViewer } from '../providers/AuthProvider';
+import { LogoutButton } from '@/features';
 
 export function Header() {
   const viewer = useViewer();

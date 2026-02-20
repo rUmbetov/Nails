@@ -19,7 +19,6 @@ export function buildBookingText(params: {
 
 export function buildWhatsAppUrl(text: string) {
   const encoded = encodeURIComponent(text);
-  // убираем + для wa.me
   const digits = PROFILE.phoneRaw.replace(/[^\d]/g, "");
   return `https://wa.me/${digits}?text=${encoded}`;
 }

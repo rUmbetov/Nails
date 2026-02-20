@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/sections/Header";
-import { getViewer } from "@/lib/auth";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { getViewer } from "@/lib/auth/auth";
 
 const fontSans = Inter({
   subsets: ["latin", "cyrillic"],
@@ -34,7 +34,16 @@ export default async function RootLayout({
       >
         <AuthProvider viewer={viewer}>
           <Header />
-          {children}
+          <main
+            style={{
+              display: "flex",
+              minHeight: "100vh",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {children}
+          </main>
         </AuthProvider>
       </body>
     </html>

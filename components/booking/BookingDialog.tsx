@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,20 +17,22 @@ import { PROFILE, SERVICES } from "@/lib/profile";
 import { buildBookingText, buildWhatsAppUrl } from "@/lib/booking";
 
 type Props = {
-  trigger?: React.ReactNode;          // кастомный триггер (если нужно)
+  trigger?: React.ReactNode;
   defaultService?: string;
 };
 
 export function BookingDialog({ trigger, defaultService }: Props) {
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState("");
-  const [service, setService] = React.useState(defaultService ?? SERVICES[0].title);
+  const [service, setService] = React.useState(
+    defaultService ?? SERVICES[0].title,
+  );
   const [date, setDate] = React.useState("");
   const [note, setNote] = React.useState("");
 
   const text = React.useMemo(
     () => buildBookingText({ name, service, date, note }),
-    [name, service, date, note]
+    [name, service, date, note],
   );
 
   const whatsappUrl = React.useMemo(() => buildWhatsAppUrl(text), [text]);
@@ -33,7 +41,6 @@ export function BookingDialog({ trigger, defaultService }: Props) {
     try {
       await navigator.clipboard.writeText(text);
     } catch {
-      // no-op (можно добавить toast, если используешь sonner)
     }
   }
 
@@ -56,19 +63,28 @@ export function BookingDialog({ trigger, defaultService }: Props) {
         {trigger ? (
           trigger
         ) : (
-          <Button size="lg" className="rounded-2xl">Записаться</Button>
+          <Button size="lg" className="rounded-2xl">
+            Записаться
+          </Button>
         )}
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[520px]">
         <DialogHeader>
-          <DialogTitle className="font-serif text-2xl">Запись на процедуру</DialogTitle>
+          <DialogTitle className="font-serif text-2xl">
+            Запись на процедуру
+          </DialogTitle>
         </DialogHeader>
 
         <div className="grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="name">Ваше имя</Label>
-            <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Например, Марина" />
+            <Input
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Например, Марина"
+            />
           </div>
 
           <div className="grid gap-2">
@@ -110,22 +126,36 @@ export function BookingDialog({ trigger, defaultService }: Props) {
 
           <div className="rounded-2xl border bg-muted/40 p-3 text-sm">
             <div className="mb-2 font-semibold">Текст сообщения</div>
-            <pre className="whitespace-pre-wrap text-xs text-muted-foreground">{text}</pre>
+            <pre className="whitespace-pre-wrap text-xs text-muted-foreground">
+              {text}
+            </pre>
           </div>
 
           <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
-            <Button variant="outline" className="rounded-2xl" onClick={copyText}>
+            <Button
+              variant="outline"
+              className="rounded-2xl"
+              onClick={copyText}
+            >
               Скопировать текст
             </Button>
 
             <Button asChild className="rounded-2xl">
-              <a href={whatsappUrl} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setOpen(false)}
+              >
                 Отправить в WhatsApp
               </a>
             </Button>
 
             <Button asChild variant="outline" className="rounded-2xl">
-              <a href={`tel:${PROFILE.phoneRaw}`} onClick={() => setOpen(false)}>
+              <a
+                href={`tel:${PROFILE.phoneRaw}`}
+                onClick={() => setOpen(false)}
+              >
                 Позвонить
               </a>
             </Button>
@@ -133,7 +163,12 @@ export function BookingDialog({ trigger, defaultService }: Props) {
 
           <div className="text-xs text-muted-foreground">
             Или напишите в Instagram:{" "}
-            <a className="underline underline-offset-4" href={PROFILE.instagramUrl} target="_blank" rel="noreferrer">
+            <a
+              className="underline underline-offset-4"
+              href={PROFILE.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
               {PROFILE.instagramHandle}
             </a>
           </div>

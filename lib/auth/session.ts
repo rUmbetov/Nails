@@ -1,6 +1,5 @@
-// lib/session.ts
 import { cookies } from "next/headers";
-import { signSessionToken, verifyToken } from "@/lib/jwt";
+import { signSessionToken, verifyToken } from "@/lib/auth/jwt";
 import type { Viewer } from "@/types/viewer";
 
 const COOKIE_NAME = "session";
