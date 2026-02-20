@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  compiler: {
+    styledComponents: true, // Включает правильную трансформацию и добавляет SSR-классы
+  },
 };
 
 export default nextConfig;
