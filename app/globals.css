@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -52,8 +52,8 @@
   --radius: 0.625rem;
 
   /* base */
-  --background: oklch(0.985 0.01 350);        /* почти белый с розовым оттенком */
-  --foreground: oklch(0.20 0.02 20);          /* мягкий тёплый почти-чёрный */
+  --background: oklch(0.985 0.01 350); /* почти белый с розовым оттенком */
+  --foreground: oklch(0.2 0.02 20); /* мягкий тёплый почти-чёрный */
 
   /* surfaces */
   --card: oklch(0.995 0.005 350);
@@ -63,15 +63,15 @@
   --popover-foreground: var(--foreground);
 
   /* brand (primary) */
-  --primary: oklch(0.72 0.11 350);            /* пыльная роза */
-  --primary-foreground: oklch(0.985 0 0);     /* белый */
+  --primary: oklch(0.72 0.11 350); /* пыльная роза */
+  --primary-foreground: oklch(0.985 0 0); /* белый */
 
   /* secondary / muted */
-  --secondary: oklch(0.96 0.02 350);          /* светло-розовый */
+  --secondary: oklch(0.96 0.02 350); /* светло-розовый */
   --secondary-foreground: var(--foreground);
 
   --muted: oklch(0.955 0.015 350);
-  --muted-foreground: oklch(0.52 0.03 20);    /* серо-тёплый */
+  --muted-foreground: oklch(0.52 0.03 20); /* серо-тёплый */
 
   /* accent (hover chips etc.) */
   --accent: oklch(0.95 0.03 350);
@@ -81,14 +81,14 @@
   --destructive: oklch(0.62 0.22 25);
 
   /* borders / inputs / rings */
-  --border: oklch(0.90 0.03 350);             /* розовый бордер */
-  --input: oklch(0.90 0.03 350);
-  --ring: oklch(0.78 0.10 350);               /* розовый focus ring */
+  --border: oklch(0.9 0.03 350); /* розовый бордер */
+  --input: oklch(0.9 0.03 350);
+  --ring: oklch(0.78 0.1 350); /* розовый focus ring */
 
   /* charts можно тоже “в палитре”, но это не критично */
   --chart-1: oklch(0.72 0.11 350);
   --chart-2: oklch(0.78 0.08 10);
-  --chart-3: oklch(0.70 0.06 320);
+  --chart-3: oklch(0.7 0.06 320);
   --chart-4: oklch(0.82 0.07 30);
   --chart-5: oklch(0.76 0.07 0);
 
@@ -102,8 +102,6 @@
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
 }
-
-
 
 @layer base {
   * {

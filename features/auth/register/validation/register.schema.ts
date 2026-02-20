@@ -1,14 +1,14 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const registerSchema = z
   .object({
-    email: z.string().email("Введите корректный email"),
-    password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
+    email: z.string().email('Введите корректный email'),
+    password: z.string().min(6, 'Пароль должен содержать минимум 6 символов'),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Пароли не совпадают",
-    path: ["confirmPassword"],
+    message: 'Пароли не совпадают',
+    path: ['confirmPassword'],
   });
 
 export type RegisterDTO = z.infer<typeof registerSchema>;

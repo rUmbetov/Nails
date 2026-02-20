@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 
-import { PROFILE, SERVICES } from "@/lib/profile";
-import { buildBookingText, buildWhatsAppUrl } from "@/lib/booking";
+import { PROFILE, SERVICES } from '@/lib/profile';
+import { buildBookingText, buildWhatsAppUrl } from '@/lib/booking';
 
 type Props = {
   trigger?: React.ReactNode;
@@ -23,12 +23,10 @@ type Props = {
 
 export function BookingDialog({ trigger, defaultService }: Props) {
   const [open, setOpen] = React.useState(false);
-  const [name, setName] = React.useState("");
-  const [service, setService] = React.useState(
-    defaultService ?? SERVICES[0].title,
-  );
-  const [date, setDate] = React.useState("");
-  const [note, setNote] = React.useState("");
+  const [name, setName] = React.useState('');
+  const [service, setService] = React.useState(defaultService ?? SERVICES[0].title);
+  const [date, setDate] = React.useState('');
+  const [note, setNote] = React.useState('');
 
   const text = React.useMemo(
     () => buildBookingText({ name, service, date, note }),
@@ -40,15 +38,14 @@ export function BookingDialog({ trigger, defaultService }: Props) {
   async function copyText() {
     try {
       await navigator.clipboard.writeText(text);
-    } catch {
-    }
+    } catch {}
   }
 
   function reset() {
-    setName("");
+    setName('');
     setService(defaultService ?? SERVICES[0].title);
-    setDate("");
-    setNote("");
+    setDate('');
+    setNote('');
   }
 
   return (
@@ -71,9 +68,7 @@ export function BookingDialog({ trigger, defaultService }: Props) {
 
       <DialogContent className="sm:max-w-[520px]">
         <DialogHeader>
-          <DialogTitle className="font-serif text-2xl">
-            Запись на процедуру
-          </DialogTitle>
+          <DialogTitle className="font-serif text-2xl">Запись на процедуру</DialogTitle>
         </DialogHeader>
 
         <div className="grid gap-4">
@@ -93,7 +88,7 @@ export function BookingDialog({ trigger, defaultService }: Props) {
               id="service"
               value={service}
               onChange={(e) => setService(e.target.value)}
-              className="h-10 rounded-md border bg-background px-3 text-sm"
+              className="bg-background h-10 rounded-md border px-3 text-sm"
             >
               {SERVICES.map((s) => (
                 <option key={s.id} value={s.title}>
@@ -124,19 +119,15 @@ export function BookingDialog({ trigger, defaultService }: Props) {
             />
           </div>
 
-          <div className="rounded-2xl border bg-muted/40 p-3 text-sm">
+          <div className="bg-muted/40 rounded-2xl border p-3 text-sm">
             <div className="mb-2 font-semibold">Текст сообщения</div>
-            <pre className="whitespace-pre-wrap text-xs text-muted-foreground">
+            <pre className="text-muted-foreground text-xs whitespace-pre-wrap">
               {text}
             </pre>
           </div>
 
           <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
-            <Button
-              variant="outline"
-              className="rounded-2xl"
-              onClick={copyText}
-            >
+            <Button variant="outline" className="rounded-2xl" onClick={copyText}>
               Скопировать текст
             </Button>
 
@@ -152,17 +143,14 @@ export function BookingDialog({ trigger, defaultService }: Props) {
             </Button>
 
             <Button asChild variant="outline" className="rounded-2xl">
-              <a
-                href={`tel:${PROFILE.phoneRaw}`}
-                onClick={() => setOpen(false)}
-              >
+              <a href={`tel:${PROFILE.phoneRaw}`} onClick={() => setOpen(false)}>
                 Позвонить
               </a>
             </Button>
           </div>
 
-          <div className="text-xs text-muted-foreground">
-            Или напишите в Instagram:{" "}
+          <div className="text-muted-foreground text-xs">
+            Или напишите в Instagram:{' '}
             <a
               className="underline underline-offset-4"
               href={PROFILE.instagramUrl}

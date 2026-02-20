@@ -1,5 +1,3 @@
-
-
 export function YandexMapEmbed() {
   return (
     <iframe

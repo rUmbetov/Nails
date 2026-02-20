@@ -1,4 +1,4 @@
-import { SignJWT, jwtVerify } from "jose";
+import { SignJWT, jwtVerify } from 'jose';
 
 const getJwtSecretKey = () => new TextEncoder().encode(process.env.JWT_SECRET!);
 
@@ -9,9 +9,9 @@ export interface SessionPayload {
 
 export const signSessionToken = async (payload: SessionPayload) => {
   return new SignJWT({ ...payload })
-    .setProtectedHeader({ alg: "HS256" })
+    .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
-    .setExpirationTime("7d")
+    .setExpirationTime('7d')
     .sign(getJwtSecretKey());
 };
 

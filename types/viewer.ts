@@ -1,4 +1,4 @@
-export type Role = "ADMIN" | "EDITOR" | "USER" | string;
+export type Role = 'ADMIN' | 'EDITOR' | 'USER' | string;
 
 export type Viewer = {
   userId: string;

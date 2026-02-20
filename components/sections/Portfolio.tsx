@@ -1,14 +1,13 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 const images = [
-  "/works/1.jpg",
-  "/works/2.jpg",
-  "/works/3.jpg",
-  "/works/4.jpg",
-  "/works/5.jpg",
-  "/works/6.jpg",
+  '/works/1.jpg',
+  '/works/2.jpg',
+  '/works/3.jpg',
+  '/works/4.jpg',
+  '/works/5.jpg',
+  '/works/6.jpg',
 ];
-
 
 export function Portfolio() {
   return (
@@ -17,7 +16,7 @@ export function Portfolio() {
         <h2 id="works" className="font-serif text-2xl font-semibold tracking-tight">
           Портфолио
         </h2>
-        <span className="text-xs text-muted-foreground">{images.length} фото</span>
+        <span className="text-muted-foreground text-xs">{images.length} фото</span>
       </div>
 
       <div className="mt-3 grid grid-cols-3 gap-3 lg:grid-cols-3">
