@@ -1,19 +1,18 @@
 'use client'
 import Link from 'next/link';
 import { LogoutButton } from '../ui/LogoutButton';
-import { useUser } from '@/store/UserStoreProvider';
+import { useViewer } from '../providers/AuthProvider';
 
 export function Header() {
-const { user } = useUser();
-
+  const viewer = useViewer();
   return (
     <header style={{ display: 'flex', gap: '1rem', padding: '1rem', borderBottom: '1px solid #ccc' }}>
       <Link href="/">Главная</Link>
       
       <div style={{ marginLeft: 'auto', display: 'flex', gap: '1rem', alignItems: 'center' }}>
-        {user ? (
+        {viewer ? (
           <>
-            <span>Роль: {user.role}</span>
+            <span>Роль: {viewer.role}</span>
             <LogoutButton />
           </>
         ) : (

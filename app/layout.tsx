@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/sections/Header";
-import { getUser } from "@/lib/auth";
-import { UserStoreProvider } from "@/store/UserStoreProvider";
+import { getViewer } from "@/lib/auth";
+import { AuthProvider } from "@/components/providers/AuthProvider";
 
 const fontSans = Inter({
   subsets: ["latin", "cyrillic"],
@@ -26,16 +26,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const user = await getUser();
+  const viewer = await getViewer();
   return (
     <html lang="ru">
       <body
         className={`${fontSans.variable} ${fontSerif.variable} antialiased`}
       >
-        <UserStoreProvider user={user}>
+        <AuthProvider viewer={viewer}>
           <Header />
           {children}
-        </UserStoreProvider>
+        </AuthProvider>
       </body>
     </html>
   );

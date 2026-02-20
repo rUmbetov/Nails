@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { loginUser } from '@/actions/auth';
 import { LoginDTO, loginSchema } from '@/types/types';
-import { useUser } from '@/store/UserStoreProvider';
 
 const Form = styled.form`
   display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: 2rem auto;
@@ -18,7 +17,7 @@ const ErrorText = styled.span`
 
 export function LoginForm() {
   const router = useRouter();
-const { setUser } = useUser();  const [isPending, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
 
   const { register, handleSubmit, formState: { errors }, setError } = useForm<LoginDTO>({
     resolver: zodResolver(loginSchema),
@@ -35,7 +34,6 @@ const { setUser } = useUser();  const [isPending, startTransition] = useTransiti
       }
 
       if (result.success) {
-        setUser(result.user);
         router.refresh();
         router.push('/');
       }

@@ -1,11 +1,12 @@
-import { cookies } from 'next/headers';
-import { verifyToken, AccessTokenPayload } from '@/lib/jwt';
+import { cookies } from "next/headers";
+import { verifyToken } from "@/lib/jwt";
+import type { Viewer } from "@/types/viewer";
 
-export async function getUser(): Promise<AccessTokenPayload | null> {
-  const cookieStore = cookies();
-  const token = (await cookieStore).get('accessToken')?.value;
-
+export async function getViewer(): Promise<Viewer | null> {
+  const coockieSession = await cookies()
+  const token = coockieSession.get("session")?.value;
   if (!token) return null;
 
-  return await verifyToken<AccessTokenPayload>(token);
+  // payload должен содержать userId + role
+  return await verifyToken<Viewer>(token);
 }

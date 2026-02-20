@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import { RegisterDTO, registerSchema } from '@/types/types';
 import { registerUser } from '@/actions/auth';
 import styled from 'styled-components';
-import { useUser } from '@/store/UserStoreProvider';
 
 const Form = styled.form`
   display: flex;
@@ -24,7 +23,6 @@ const ErrorText = styled.span`
 
 export function RegisterForm() {
   const router = useRouter();
-const { setUser } = useUser();
   const [isPending, startTransition] = useTransition();
 
   const { register, handleSubmit, formState: { errors }, setError } = useForm<RegisterDTO>({
@@ -50,7 +48,6 @@ const { setUser } = useUser();
       if (result.success) {
         // Поскольку юзер залогинен, обновляем роутер для ререндера Layout
         // и направляем в дашборд
-        setUser(result.user);
         router.refresh();
         router.push('/');
       }
