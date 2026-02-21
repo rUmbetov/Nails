@@ -10,7 +10,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 # Если используете Prisma или другую ORM, раскомментируйте генерацию клиента:
-RUN npx prisma generate 
+RUN DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" npx prisma generate
 RUN npm run build
 
 # 3. Production образ
